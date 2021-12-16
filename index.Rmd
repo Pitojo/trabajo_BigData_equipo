@@ -301,7 +301,7 @@ ggplot(export_2, aes(label = Country,
                   size = exportaciones,   
                   color = factor(sample.int(10, nrow(export_2), replace =T)))) +
   geom_text_wordcloud(grid_size = 8) +
-  scale_size_area(max_size = 30) +
+  scale_size_area(max_size = 26) +
   theme_minimal() 
 
 ```
