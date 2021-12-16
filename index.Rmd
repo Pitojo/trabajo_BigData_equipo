@@ -1,5 +1,5 @@
 ---
-title: "CRUDO EN EL MUNDO"
+title: "LA IMPORTANCIA DEL CRUDO EN LA ECONOMÍA"
 author: "Carolina(caesgar2@alumni.uv.es)  \n\n Jialing(zjia@alumni.uv.es)  \n \n Jose(pitojo@alumni.uv.es). \n\n Universitat de València"
 date: "Diciembre de 2021 (actualizado el `r format(Sys.time(), '%d-%m-%Y')`)"
 output:
@@ -113,7 +113,7 @@ world <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
  
 ```
 
-# PRODUCCIÓN 
+# PRODUCCIÓN 2020 
 
 Primero comenzaremos mostrando una tabla con la producción de crudo para los diferentes países para el año 2020 medido como miles de barriles por dia.
 Hay 42 galones estadounidenses en un barril de Brent, esto es el equivalente a 159 litros. El barril se considera una unidad de medida de volumen que se utiliza en numerosos contextos. En peso, un barril de petróleo crudo es de unos 135 kg.
@@ -173,7 +173,7 @@ pw
 knitr::include_graphics(here::here("imagenes", "petroleorentas.jpg")  )
 ```
 
-El petróleo genera aproximadamente, según las condiciones de la economía cerca del 2.5% del producto interior bruto (PIB) mundial, y casi aporta un tercio de la energía total que utiliza la humanidad
+El petróleo genera aproximadamente (según las condiciones de la economía) cerca del 2.5% del producto interior bruto (PIB) mundial, y casi aporta un tercio de la energía total que utiliza la humanidad.
 Con los datos obtenidos del banco mundial, obtenemos la evolución de las rentas del petróleo en porcentaje del PIB para los 10 los países con mayores rentas del petróleo para el año 2019.
 
 
@@ -241,7 +241,7 @@ import <- rio::import(here::here("datos", "import.xlsx"))
 
 # PRECIO DE LA GASOLINA
 
-En el siguiente mapa podemos observar los diferentes precios de la gasolina en el mundo  para el año 2016. Podemos observar notables diferencias entre países.
+En el siguiente mapa podemos observar los diferentes precios de la gasolina en el mundo para el año 2016. Podemos observar notables diferencias entre países.
 
 ```{r Mapa precio Gasolina, echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -271,7 +271,9 @@ ggplotly(p1)
 
 ```
 
-En el mapa anterior se puede observar que los países de la Europa occdental tienen los precios de la gasolina más elevados mientras que los países que producen petróleo tienen unos precios más bajos.
+En el mapa anterior se puede observar que los países de la Europa occdental tienen los precios de la gasolina más elevados mientras que los países que producen petróleo tienen unos precios más bajos. Actualmente el precio de la gasolina esta en máximos históricos desde 2012. 
+
+Los meses de parón generados por las limitaciones de movilidad a raíz del COVID-19 el año pasado llegaron a arrastrar los precios de la gasolina hasta niveles mínimos, en los 1,072 euros. Un precio que desde el año 2016 no se había registrado. En este periodo, el petróleo de referencia en Europa también se topaba en sus niveles más bajos en 18 años, en los 19,33 dólares por barril de Brent.
 
 # EXPORTACIONES EN EL MUNDO
 
@@ -318,12 +320,10 @@ import = import[-1,]
 import[1] <- list(NULL)
 import[41] <- list(NULL)
 
-
 import_1 <- import %>% tidyr::pivot_longer(cols = 2:41, names_to = "year", values_to = "imports" )
 
 is.character(import_1$imports)
 import_1$imports=as.numeric(import_1$imports)
-
 
 import_2 <- import_1 %>% tidyr::drop_na() %>% 
   filter(imports > 0 & country != "World" & country != "Micronesia" & country != "Northern Mariana Islands" & country != "Tuvalu") %>%
@@ -653,9 +653,36 @@ us
 ```
 
 
+# BIBLIOGRAFÍA
+
+## DATOS
+
+WORLD BANK. (2021). bancomundial.org. <https://datos.bancomundial.org/>
+
+International - U.S. Energy Information Administration (EIA). (2020). Https://Www.Eia.Gov/. <https://www.eia.gov/international/data/world#/?tl_type=p&tl_id=5-A&pa=0000000000000000000000000000000000g&ct=0&ord=SA&c=ruvvvvvfvtvnvv1urvvvvfvvvvvvfvvvou20evvvvvvvvvnvvuvo&f=A> .
+
+## INFORMACIÓN/AYUDA
+
+index.knit. (2021). Programación y manejo de datos con R. <https://perezp44.github.io/intro-ds-21-22-web/index.html> .
+
+Datos sobre la (in) dependencia energÃ©tica europea | Noticias | Parlamento Europeo. (2014, 24 julio). Noticias Parlamento Europeo. <https://www.europarl.europa.eu/news/es/headlines/economy/20140718STO53032/datos-sobre-la-in-dependencia-energetica-europea> .
+
+Conde, Á. (2021, 3 agosto). La (in)seguridad energética de la Unión Europea. El Orden Mundial - EOM. <https://elordenmundial.com/la-inseguridad-energetica-de-la-union-europea/> .
+
+index.knit. (2021). Programación y manejo de datos con R. <https://perezp44.github.io/intro-ds-21-22-web/index.html> .
+
+Github. (2021). Github. <https://github.com/> .
+
+Para los colores [aquí]<https://r-charts.com/es/colores/>
+
+
 ```{r}
 knitr::include_graphics(here::here("imagenes", "aguacate-o-petroleoo.gif")  )
 ```
+
+
+
+
 
 
 
