@@ -15,8 +15,9 @@ La versión final del trabajo puede visualizarse en:
 
 <!-- Abajo podéis escribir lo que queráis, igual un resumen del trabajo, o ..., o ... pero al menos, tenéis que poner el título del trabajo y el nombre de los componentes del equipo-->
 
-El título del trabajo es CRUDO EN EL MUNDO, y los participantes son
-Carolina Espí Garcia, Jialing Zhang y José Pineda. En el trabajo veremos
-un poco la influencia del petróleo en la economía.
+El título del trabajo es IMPORTANCIA DEL CRUDO EN EL MUNDO, y los
+participantes son Carolina Espí Garcia, Jialing Zhang y José Pineda
+Torres. En el trabajo veremos un poco como influencia el petróleo en la
+economía.
 
 <!-- Finalmente, acuérdate que cuando hayas hecho los cambios y hayas dejado este archivo como hayáis decidido, TENEIS que knittearlo para que los cambio se actualicen en el fichero Readme.md, que es el que finalmente se visualizará en Github-->
