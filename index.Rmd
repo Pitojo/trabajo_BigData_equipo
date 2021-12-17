@@ -113,6 +113,7 @@ world <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
  
 ```
 
+
 # PRODUCCIÓN 2020 
 
 Primero comenzaremos mostrando una tabla con la producción de crudo para los diferentes países para el año 2020 medido como miles de barriles por dia.
@@ -167,6 +168,7 @@ pw
 
 ```
 
+
 # % RENTAS DEL PETRÓLEO SOBRE EL PIB
 
 ```{r}
@@ -179,27 +181,37 @@ Con los datos obtenidos del banco mundial, obtenemos la evolución de las rentas
 
 ```{r}
 data_long <- rent %>% pivot_longer(cols = 5:65, names_to = "Año",values_to = "Rent")
-#df_rent <- janitor::clean_names(data_long) 
-df_rent_tot <- data_long %>%na.omit() 
+#df_rent <- janitor::clean_names(data_long)
+df_rent_tot <- data_long %>%na.omit()
+
 
 df_rent <- df_rent_tot %>% filter(Año==2019) %>% arrange(desc(Rent)) %>% slice(1:10)
 
-df_ev <- df_rent_tot %>% filter(country_code %in% c("LBY", "COG","KWT","IRQ","AGO","OMN","SAU","GNQ","AZE","ARB")) 
+
+df_ev <- df_rent_tot %>% filter(country_code %in% c("LBY", "COG","KWT","IRQ","AGO","OMN","SAU","GNQ","AZE","ARB"))
 
 
 
-df_ev<-df_ev %>% mutate(Año= as.integer(Año)) 
-df_ev <- df_ev %>% mutate(Año=as.numeric(Año)) 
+
+
+
+df_ev<-df_ev %>% mutate(Año= as.integer(Año))
+df_ev <- df_ev %>% mutate(Año=as.numeric(Año))
+
+
 
 
 pp <- ggplot(df_ev, aes(x=Año, y=Rent,group=country_name,color=country_name))+
-  geom_line()+ geom_point() +
-  ggtitle("Evolución rentas petróleo en % sobre el PIB") +
-  theme_ipsum() +
-  ylab("Rentas del petróleo en % del PIB")+scale_x_continuous(breaks=seq(1980,2015,5),limits=c(1980,2015))
+ geom_line()+ geom_point() +
+ ggtitle("Evolución rentas petróleo en % sobre el PIB") +
+ theme_ipsum() +
+ scale_x_continuous(breaks=seq(1980,2015,5),limits=c(1980,2015)) + labs(y = NULL,
+color = "Países")
+
 
 pp + transition_reveal(Año)
 ```
+
 
 # EVOLUCIÓN DEL CONSUMO DEL PETRÓLEO DESDE 1960
 
@@ -239,6 +251,7 @@ import <- rio::import(here::here("datos", "import.xlsx"))
 
 ```
 
+
 # PRECIO DE LA GASOLINA
 
 En el siguiente mapa podemos observar los diferentes precios de la gasolina en el mundo para el año 2016. Podemos observar notables diferencias entre países.
@@ -275,6 +288,7 @@ En el mapa anterior se puede observar que los países de la Europa occdental tie
 
 Los meses de parón generados por las limitaciones de movilidad a raíz del COVID-19 el año pasado llegaron a arrastrar los precios de la gasolina hasta niveles mínimos, en los 1,072 euros. Un precio que desde el año 2016 no se había registrado. En este periodo, el petróleo de referencia en Europa también se topaba en sus niveles más bajos en 18 años, en los 19,33 dólares por barril de Brent.
 
+
 # EXPORTACIONES EN EL MUNDO
 
 A continuación mostraremos los principales exportadores de petróleo en el mundo.
@@ -310,6 +324,7 @@ ggplot(export_2, aes(label = Country,
 
 En la nube de palabras anterior podemos comprobar que efectivamente los países que son exportadores/productores de petróleo suelen tener unos precios de la gasolina inferiores y es que el exportar o importar influye en el precio final de la gasolina, así como las distintas ayudas e impuestos del gobierno, el precio del barril y las políticas antiinflacionistas.
 
+
 # IMPORTACIONES EN EL MUNDO
 
 Ahora mostraremos los principales países importadores de petróleo:
@@ -341,6 +356,7 @@ import_2 %>% DT::datatable(extensions = 'Buttons',
 Se debe decir que las importaciones pueden ser mayores o menores ya que el petróleo es almacenado en las aduanas y no se incluyen en las estadísticas hasta que se retira para ser utilizado como combustible para vehículos destinados al comercio como aeronaves o buques o bien hasta que se retire para uso interno.
 
 Los principales importadores de petróleo son EEUU, China, India, Japón y Corea del Sur, solo ellos explican el 57% de las importaciones a nivel mundial.
+
 
 ## BALANCE
 
@@ -375,9 +391,9 @@ En la tabla anterior podemos observar que países tienen una mayor dependencia e
 Por otro lado, los principales exportadores, deben tener cuidado con depender de las exportaciones del crudo, ya que ante una reducción de precios pueden ver sus economías enormemente afectadas, por lo que deben aprovechar los beneficios del petróleo para diversificar su economía y hacerla menos dependiente del mencionado recurso.
 
 
-
 # DATOS SOBRE EUROPA Y USA 
 A continuación veamos algunos datos sobre Europa y los Estados Unidos. Los datos los hemos obtenido desde Eurostat y EIA
+
 
 ## EUROPA 
 
@@ -553,6 +569,7 @@ spain_exp <- ggplot(spain_exp_imp, aes(TIME, Valueexp, fill = Valueexp)) +
 spain_exp 
 ```
 
+
 ## ESTADOS UNIDOS
 
 Antes de que se desarrollara la industria autómovil, el petróleo no tenía gran importancia en el país, después de la llegada del fordismo, el consumo de este producto empezó a dispararse.
@@ -652,19 +669,23 @@ us
 
 ```
 
+
 # CONCLUSIÓN
 
 El petróleo es un recurso natural no renovable que aporta el mayor porcentaje del total de la energía que consumimos. La importancia del petróleo no ha dejado de crecer desde sus primeras aplicaciones industriales a mediados del siglo XIX, y ha sido el responsable de muchos conflictos sobre todo en zonas como Oriente Medio.
 
 La alta dependencia que el mundo tiene del petróleo, la inestabilidad que caracteriza al mercado internacional y las fluctuaciones de los precios de este producto, han llevado a que se investiguen energías alternativas, y aunque hasta ahora no se ha logrado una opción que realmente lo sustituya, parece que poco a poco se va avanzando más por este camino.
 
+
 # BIBLIOGRAFÍA
+
 
 ## DATOS
 
 WORLD BANK. (2021). bancomundial.org. <https://datos.bancomundial.org/>
 
 International - U.S. Energy Information Administration (EIA). (2020). Https://Www.Eia.Gov/. <https://www.eia.gov/international/data/world#/?tl_type=p&tl_id=5-A&pa=0000000000000000000000000000000000g&ct=0&ord=SA&c=ruvvvvvfvtvnvv1urvvvvfvvvvvvfvvvou20evvvvvvvvvnvvuvo&f=A> .
+
 
 ## INFORMACIÓN/AYUDA
 
